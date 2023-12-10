@@ -41,6 +41,14 @@ namespace WebApiSignalR.Controllers
             FileHelper.Write(result);   
         }
 
+        // GET: api/<OfferController>
+        [HttpGet("/IncreaseRoom")]
+        public void Increase(string room,double number)
+        {
+            var result = FileHelper.Read(room) + number;
+            FileHelper.Write(room,result);
+        }
+
         // GET api/<OfferController>/5
         [HttpGet("{id}")]
         public string Get(int id)
