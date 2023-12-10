@@ -11,13 +11,26 @@ namespace WebApiSignalR.Controllers
     {
         public OfferController()
         {
-            
+            if (!System.IO.File.Exists("mercedes.txt"))
+            {
+                FileHelper.Write("mercedes", 5000);
+            }
+            if (!System.IO.File.Exists("chevrolet.txt"))
+            {
+                FileHelper.Write("chevrolet", 3575);
+            }
         }
         // GET: api/<OfferController>
         [HttpGet]
         public double Get()
         {
             return FileHelper.Read();
+        }
+
+        [HttpGet("/Room")]
+        public double Get(string room)
+        {
+            return FileHelper.Read(room);
         }
 
         // GET: api/<OfferController>

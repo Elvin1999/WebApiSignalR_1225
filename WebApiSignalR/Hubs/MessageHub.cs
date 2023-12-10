@@ -19,5 +19,10 @@ namespace WebApiSignalR.Hubs
         {
             await Clients.All.SendAsync("ReceiveInfo", message, FileHelper.Read());
         }
+        public async Task JoinRoom(string room,string user)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId,room);
+            await Clients.OthersInGroup(room).SendAsync("ReceiveJoinInfo", user);
+        }
     }
 }
